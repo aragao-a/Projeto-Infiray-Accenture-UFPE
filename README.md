@@ -1,4 +1,5 @@
-# Infiray P2 PRO - Câmera Térmica com IA## Kickstart do Projeto - Fase 1 da Rotação Accenture UFPE
+# Infiray P2 PRO - Câmera Térmica com IA
+## Kickstart do Projeto - Fase 1 da Rotação Accenture UFPE
 Projeto da Câmera Térmica do Innovation Center com objetivo inicial de captação eficiente do feed da câmera pra utilização em modelos de IA e aplicações industriais.
 ## Registros de Encontros no Innovation Center
 ### 1° Encontro: 31/08/2025
