@@ -8,7 +8,9 @@ Projeto da Câmera Térmica do Innovation Center com objetivo inicial de captaç
     - A transmissão do celular Android pra notebooks usando o ADB e tratando o feed a nível de exibição visual no Notebook, tipo rodar um Streaming    
     - Explorar capacidades de IP ou MAC Address do aplicativo P2 PRO    
     - Explorar repositório do GitHub existente que se propõe a isso - https://github.com/ks00x/p2pro-live
-### 2° Encontro: ---
+### 2° Encontro: 
+- Veredito que o celular vai ter que ser uma espécie de middleware para realizar a transmissão dos conteúdos
+- Conferir com André Aragão a ideia adotada na transmissão do Rayban
 ## Ideias de Inovação pós critérios de aceite
 ### Aplicação no Unitree GO1
 - Achar uma forma de acoplar o feed da Câmera ao Dashboard do cachorro Unitree GO1, oferecendo uma nova camada de visão, incluindo leituras visuais térmicos no escuro e de equipamentos industriais ou em ambientes tecnológicos
