@@ -12,6 +12,9 @@ Projeto da Câmera Térmica do Innovation Center com objetivo inicial de captaç
 - Veredito que o celular vai ter que ser uma espécie de middleware para realizar a transmissão dos conteúdos
 - Conferir com André Aragão a ideia adotada na transmissão do Rayban
 - Conferir legalidade dos processos envolvidos pra Transmissão
+### Reunião Recorrente com André (11/08): 
+- Teste de transmissão da tela lá no IC
+- Teste da Hipótese OpenCV
 ## Ideias de Inovação pós critérios de aceite
 ### Aplicação no Unitree GO1
 - Achar uma forma de acoplar o feed da Câmera ao Dashboard do cachorro Unitree GO1, oferecendo uma nova camada de visão, incluindo leituras visuais térmicos no escuro e de equipamentos industriais ou em ambientes tecnológicos
