@@ -8,7 +8,7 @@ Projeto da Câmera Térmica do Innovation Center com objetivo inicial de captaç
     - A transmissão do celular Android pra notebooks usando o ADB e tratando o feed a nível de exibição visual no Notebook, tipo rodar um Streaming    
     - Explorar capacidades de IP ou MAC Address do aplicativo P2 PRO    
     - Explorar repositório do GitHub existente que se propõe a isso - https://github.com/ks00x/p2pro-live
-### 2° Encontro: 
+### 2° Encontro (Assíncrono): 
 - Veredito que o celular vai ter que ser uma espécie de middleware para realizar a transmissão dos conteúdos
 - Conferir com André Aragão a ideia adotada na transmissão do Rayban
 - Conferir legalidade dos processos envolvidos pra Transmissão
