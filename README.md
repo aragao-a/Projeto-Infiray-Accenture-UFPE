@@ -15,6 +15,9 @@ Projeto da Câmera Térmica do Innovation Center com objetivo inicial de captaç
 ### Reunião Recorrente com André (11/08): 
 - Teste de transmissão da tela lá no IC
 - Teste da Hipótese OpenCV
+### Reunião Recorrente com André (18/08): 
+- Parte da equipe foi para o Innovation Center testar as possibilidades de conexão da câmera com o computador.
+- André incentivou a ideia e o avanço pode tornar promissor a possibilidade de integração com o cachorro robô como uma feature futura.
 ## Ideias de Inovação pós critérios de aceite
 ### Aplicação no Unitree GO1
 - Achar uma forma de acoplar o feed da Câmera ao Dashboard do cachorro Unitree GO1, oferecendo uma nova camada de visão, incluindo leituras visuais térmicos no escuro e de equipamentos industriais ou em ambientes tecnológicos
