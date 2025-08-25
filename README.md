@@ -30,6 +30,9 @@ Projeto da Câmera Térmica do Innovation Center com objetivo inicial de captaç
     scrcpy
 
 ```
+### Colabs de Experimentação pra obtenção das Temperaturas / Treinamento de Modelo: 
+- https://colab.research.google.com/drive/1kqmdpX7kIXMH38yqwNZwp9BbsJlA-Wsn?usp=sharing
+- https://colab.research.google.com/drive/11X_l1v3IsetNd6W9OgqWgKdKm6aNOc2m?usp=sharing
 ## Ideias de Inovação pós critérios de aceite
 ### Aplicação no Unitree GO1
 - Achar uma forma de acoplar o feed da Câmera ao Dashboard do cachorro Unitree GO1, oferecendo uma nova camada de visão, incluindo leituras visuais térmicos no escuro e de equipamentos industriais ou em ambientes tecnológicos
