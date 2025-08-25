@@ -17,6 +17,9 @@ Projeto da Câmera Térmica do Innovation Center com objetivo inicial de captaç
 ### Reunião Recorrente com André (18/08): 
 - Parte da equipe foi para o Innovation Center testar as possibilidades de conexão da câmera com o computador.
 - André incentivou a ideia e o avanço pode tornar promissor a possibilidade de integração com o cachorro robô como uma feature futura.
+### Reunião Recorrente com André (25/08): 
+- Avaliar a possibilidade de deixar um range específico.
+- André pediu para verificar a questão de dinamicidade da câmera em relação ao meio.
 ### 2° Encontro (18/08): 
 - 1° Alternativa testada e validada - Transmissão da Câmera diretamente no Desktop, via App Oficial e reconhecido como Webcam ✅
 - 2° Alternativa testada e validada - Transmissão wireless Celular -> Notebook via SCRCPY, mais flexível e congruente com a aplicação Unitree GO1 ✅
