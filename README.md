@@ -8,16 +8,28 @@ Projeto da Câmera Térmica do Innovation Center com objetivo inicial de captaç
     - A transmissão do celular Android pra notebooks usando o ADB e tratando o feed a nível de exibição visual no Notebook, tipo rodar um Streaming    
     - Explorar capacidades de IP ou MAC Address do aplicativo P2 PRO    
     - Explorar repositório do GitHub existente que se propõe a isso - https://github.com/ks00x/p2pro-live
-### 2° Encontro (Assíncrono): 
+### Reunião Recorrente com André (11/08): 
 - Veredito que o celular vai ter que ser uma espécie de middleware para realizar a transmissão dos conteúdos
 - Conferir com André Aragão a ideia adotada na transmissão do Rayban
-- Conferir legalidade dos processos envolvidos pra Transmissão
-### Reunião Recorrente com André (11/08): 
+- Conferir legalidade dos processos envolvidos pra Transmissão 
 - Teste de transmissão da tela lá no IC
 - Teste da Hipótese OpenCV
 ### Reunião Recorrente com André (18/08): 
 - Parte da equipe foi para o Innovation Center testar as possibilidades de conexão da câmera com o computador.
 - André incentivou a ideia e o avanço pode tornar promissor a possibilidade de integração com o cachorro robô como uma feature futura.
+### 2° Encontro (18/08): 
+- 1° Alternativa testada e validada - Transmissão da Câmera diretamente no Desktop, via App Oficial e reconhecido como Webcam ✅
+- 2° Alternativa testada e validada - Transmissão wireless Celular -> Notebook via SCRCPY, mais flexível e congruente com a aplicação Unitree GO1 ✅
+- Comandos importantes via SCRCPY:
+```bash
+    adb devices
+    adb tcpip 5555
+    (remover cabo)
+    adb connect {ip}:5555 (no mesmo wi-fi)
+    adb devices (confirmar conexão wireless)
+    scrcpy
+
+```
 ## Ideias de Inovação pós critérios de aceite
 ### Aplicação no Unitree GO1
 - Achar uma forma de acoplar o feed da Câmera ao Dashboard do cachorro Unitree GO1, oferecendo uma nova camada de visão, incluindo leituras visuais térmicos no escuro e de equipamentos industriais ou em ambientes tecnológicos
