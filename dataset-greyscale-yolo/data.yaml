@@ -1,0 +1,6 @@
+path: ./dataset-greyscale-yolo
+train: images/train
+val: images/val
+names:
+  0: backpack
+  1: person
