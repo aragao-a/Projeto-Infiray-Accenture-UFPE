@@ -1,17 +1,36 @@
 # Infiray P2 PRO - Câmera Térmica com IA
-## Kickstart do Projeto - Fase 1 da Rotação Accenture UFPE
-Projeto da Câmera Térmica do Innovation Center com objetivo inicial de captação eficiente do feed da câmera pra utilização em modelos de IA e aplicações industriais.
-## Registros de Encontros no Innovation Center
-1. Normalização por percentis (p5–p95)
 
-Quando você pega imagens da câmera, os valores de pixel (intensidade) representam temperaturas mapeadas pela paleta do app. Só que isso varia muito de cena pra cena — em um frame pode ir de 20°C a 40°C, em outro de 10°C a 25°C.
+**Kickstart do Projeto - Fase 1 da Rotação Accenture UFPE**
 
-Normalização por frame (p5–p95):
-Para cada frame, você pega o histograma de intensidades e corta os 5% mais baixos e os 5% mais altos. O que sobra (90% central) é remapeado para a escala de cinza [0–255].
-➝ Resultado: cada frame fica “otimizado” para o contraste interno dele. Bom pra destacar anomalias locais, mas ruim se você quer consistência global (comparar frames de momentos diferentes).
+Projeto da Câmera Térmica do Innovation Center com objetivo inicial de captação eficiente do feed da câmera para utilização em modelos de IA e aplicações industriais.
 
-Normalização fixa por cena:
-Você define os valores mínimo e máximo a partir de toda a sequência (por exemplo: min = 20°C, máx = 40°C) e aplica o mesmo mapeamento em todos os frames.
-➝ Resultado: perde contraste em algumas imagens, mas permite comparabilidade entre frames, essencial se você vai identificar ranges de temperatura fixos.
+## 📌 Pipeline da Fase 1
 
-No caso (detecção de anomalias térmicas), a normalização fixa por cena ou por dataset é melhor.
+### 1. Aquisição e recorte dos frames
+- Extração de quadros da câmera térmica via aplicativo **P2Pro**.
+- Corte das regiões de interesse para eliminar bordas e sobreposições da interface.
+
+### 2. Normalização por percentis (p5–p95)
+- **Frame a frame**: pega o histograma de intensidades e descarta os 5% mais baixos e os 5% mais altos.
+- O intervalo central (90%) é remapeado para [0–255].
+- Isso aumenta o contraste interno de cada frame.
+- ➝ **Resultado**: dataset consistente para identificar anomalias locais de temperatura.
+- **Script usado**: `prep_norm.py` → gera `dataset-greyscale-norm`.
+
+### 3. Criação de labels
+- **Ferramenta**: MakeSense.AI (mais estável que LabelImg no Windows).
+- **Classes definidas**:
+  - `0` → backpack (mochila)
+  - `1` → person (pessoa)
+- **Formato YOLO**: `.txt` com `<class> <x_center> <y_center> <width> <height>` (valores normalizados 0–1).
+
+### 4. Estrutura do dataset YOLO
+- `images/train/` e `images/val/` → imagens.
+- `labels/train/` e `labels/val/` → anotações `.txt`.
+- Arquivo `data.yaml` definindo paths e classes.
+
+### 5. Treinamento YOLOv8
+- **Modelo base**: `yolov8n.pt` (nano, rápido para protótipo).
+- **Comando usado**:
+  ```bash
+  yolo detect train model=yolov8n.pt data=dataset-greyscale-yolo/data.yaml imgsz=512 epochs=50 batch=16
