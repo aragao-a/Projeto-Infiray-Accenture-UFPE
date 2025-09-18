@@ -3,15 +3,15 @@ import os
 import glob
 import shutil
 
-pasta_entrada = 'greyscale'  
-pasta_saida = 'dataset-greyscale'
+pasta_entrada = 'humano'  
+pasta_saida = 'dataset'
 intervalo_segundos = 2
-extensao_video = '.mkv'
+extensao_video = '.mp4'
 
-pixels_remover_topo = 98
-pixels_remover_base = 210
-pixels_remover_esquerda = 472
-pixels_remover_direita = 477
+pixels_remover_topo = 26
+pixels_remover_base = 0
+pixels_remover_esquerda = 0
+pixels_remover_direita = 0
 
 caminho_pesquisa = os.path.join(pasta_entrada, f'*{extensao_video}')
 lista_de_videos = glob.glob(caminho_pesquisa)
