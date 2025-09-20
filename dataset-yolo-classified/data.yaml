@@ -1,0 +1,6 @@
+path: C:\Users\joaoa\InfiRay\Projeto-Infiray-Accenture-UFPE\dataset-yolo-classified
+train: images/train
+val: images/val
+names:
+  0: backpack
+  1: person
