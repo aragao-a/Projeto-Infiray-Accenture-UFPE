@@ -3,8 +3,8 @@ import os, glob, csv, cv2, numpy as np
 from ultralytics import YOLO
 
 # ---- CONFIG -----------------------------------------------------------------
-IMG_DIR     = "dataset-greyscale-norm"                 # frames já normalizados (uint8 0..255)
-MODEL       = "runs/detect/train2/weights/best.pt"     # seu YOLO treinado
+IMG_DIR     = "dataset-norm-2"                 # frames já normalizados (uint8 0..255)
+MODEL       = "runs2/detect/train2/weights/best.pt"     # seu YOLO treinado
 IMG_SIZE    = 512
 CONF_TH     = 0.25                                      # confiança mínima do detector
 TARGET_CLS  = {0}                                       # {0}=backpack, {1}=person, {0,1}=ambos
@@ -15,8 +15,8 @@ DMEAN_THR   = 30                                        # exige ROI bem acima do
 RING        = 8                                         # anel (px) ao redor da bbox para estimar fundo
 ALERT_RULE  = 1.5                                       # soma dos critérios para ligar alerta
 
-OUT_CSV     = "anomaly_events.csv"
-OUT_DIR     = "anomaly_viz"
+OUT_CSV     = "anomaly_events2.csv"
+OUT_DIR     = "anomaly_viz2"
 # -----------------------------------------------------------------------------
 
 def anomaly_score(norm_u8: np.ndarray, xyxy, ring=RING,
@@ -84,10 +84,14 @@ def main():
             # inferência
             res = model.predict(source=rgb, imgsz=IMG_SIZE, conf=CONF_TH, verbose=False)[0]
             boxes = getattr(res, "boxes", None)
+
+            relative_path = os.path.relpath(fp, IMG_DIR)
+            unique_filename = relative_path.replace(os.path.sep, '_')
+            out_path = os.path.join(OUT_DIR, unique_filename)
+
             if boxes is None or len(boxes) == 0:
                 # ainda assim salvar um frame “limpo” para auditoria
-                out = os.path.join(OUT_DIR, os.path.basename(fp))
-                cv2.imwrite(out, cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR))
+                cv2.imwrite(out_path, cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR))
                 continue
 
             # base para overlay
@@ -116,8 +120,7 @@ def main():
                              f"{stats['p95']:.1f}", f"{stats['mean_roi']:.1f}", f"{stats['mean_bg']:.1f}",
                              f"{score:.2f}", alert])
 
-            out = os.path.join(OUT_DIR, os.path.basename(fp))
-            cv2.imwrite(out, vis)
+            cv2.imwrite(out_path, vis)
 
     print(f"[OK] CSV saved to {OUT_CSV}, visualizations in {OUT_DIR}/")
 
