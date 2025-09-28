@@ -4,7 +4,7 @@ from ultralytics import YOLO
 
 # ---- CONFIG -----------------------------------------------------------------
 IMG_DIR     = "dataset-norm-2"                 # frames já normalizados (uint8 0..255)
-MODEL       = "runs2/detect/train2/weights/best.pt"     # seu YOLO treinado
+MODEL       = "runs/detect/train2/weights/best.pt"     # seu YOLO treinado
 IMG_SIZE    = 512
 CONF_TH     = 0.25                                      # confiança mínima do detector
 TARGET_CLS  = {0}                                       # {0}=backpack, {1}=person, {0,1}=ambos

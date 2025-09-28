@@ -1,36 +1,119 @@
-# Infiray P2 PRO - Câmera Térmica com IA
+# Infiray P2 Pro - AI Thermal Camera Project
 
-**Kickstart do Projeto - Fase 1 da Rotação Accenture UFPE**
+**Project from the Accenture-UFPE Innovation Center Rotation**
 
-Projeto da Câmera Térmica do Innovation Center com objetivo inicial de captação eficiente do feed da câmera para utilização em modelos de IA e aplicações industriais.
+This project provides a complete pipeline for using the InfiRay P2 Pro thermal camera to train and deploy a YOLOv8 object detection model for anomaly detection. The initial goal is to efficiently capture the camera's feed for use in AI models and industrial applications.
 
-## 📌 Pipeline da Fase 1
+---
 
-### 1. Aquisição e recorte dos frames
-- Extração de quadros da câmera térmica via aplicativo **P2Pro**.
-- Corte das regiões de interesse para eliminar bordas e sobreposições da interface.
+## Features
 
-### 2. Normalização por percentis (p5–p95)
-- **Frame a frame**: pega o histograma de intensidades e descarta os 5% mais baixos e os 5% mais altos.
-- O intervalo central (90%) é remapeado para [0–255].
-- Isso aumenta o contraste interno de cada frame.
-- ➝ **Resultado**: dataset consistente para identificar anomalias locais de temperatura.
-- **Script usado**: `prep_norm.py` → gera `dataset-greyscale-norm`.
+- **Real-time Anomaly Detection:** Detects `people` and `backpacks` from a thermal camera feed.
+- **Complete ML Pipeline:** Scripts for data preparation, training, and inference.
+- **Extensible:** Built with YOLOv8, easy to train on new custom objects.
 
-### 3. Criação de labels
-- **Ferramenta**: MakeSense.AI (mais estável que LabelImg no Windows).
-- **Classes definidas**:
-  - `0` → backpack (mochila)
-  - `1` → person (pessoa)
-- **Formato YOLO**: `.txt` com `<class> <x_center> <y_center> <width> <height>` (valores normalizados 0–1).
+---
 
-### 4. Estrutura do dataset YOLO
-- `images/train/` e `images/val/` → imagens.
-- `labels/train/` e `labels/val/` → anotações `.txt`.
-- Arquivo `data.yaml` definindo paths e classes.
+## Project Structure
 
-### 5. Treinamento YOLOv8
-- **Modelo base**: `yolov8n.pt` (nano, rápido para protótipo).
-- **Comando usado**:
-  ```bash
-  yolo detect train model=yolov8n.pt data=dataset-greyscale-yolo/data.yaml imgsz=512 epochs=50 batch=16
+The project is organized to separate code, data, and results for clarity and ease of use.
+
+```
+/
+├── .gitignore                # Files to ignore in git
+├── README.md                 # This guide
+├── requirements.txt          # Project dependencies
+├── data.yaml                 # YOLO dataset configuration
+├── yolov8n.pt                # Base model for reproducibility
+│
+├── src/                      # All project source code
+│   ├── data_preparation/     # Scripts to process raw data
+│   ├── inference.py          # Script to run detection on a file
+│   └── live_camera.py        # Script to run live detection with the camera
+│
+├── dataset/                  # Raw image data (not in git)
+│
+└── runs/                     # YOLO training and detection outputs (not in git)
+```
+
+---
+
+## Setup and Installation
+
+Follow these steps to set up your local development environment.
+
+1.  **Prerequisites:**
+    *   Python 3.8+
+    *   Git
+
+2.  **Clone the repository:**
+    ```bash
+    git clone <your-repository-url>
+    cd <repository-name>
+    ```
+
+3.  **Create and activate a virtual environment:**
+    ```bash
+    # For Windows
+    python -m venv venv
+    .\venv\Scripts\activate
+
+    # For macOS/Linux
+    python3 -m venv venv
+    source venv/bin/activate
+    ```
+
+4.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+---
+
+## How to Use the Pipeline
+
+### 1. Data Preparation
+
+Before training, raw images must be processed into the YOLO format.
+
+-   Place your raw images into the `dataset/` folder, sorted by class (e.g., `dataset/person/`, `dataset/backpack/`).
+-   Run the data preparation scripts located in `src/data_preparation/` to normalize the images and create the training/validation splits with `.txt` labels.
+    *Note: The exact commands for these scripts should be documented here.*
+
+### 2. Model Training
+
+To train the model, use the `yolo` command-line interface. The following command trains a `yolov8n` model for 100 epochs with data augmentation and early stopping.
+
+-   **Recommended command (requires GPU):**
+    ```bash
+    yolo task=detect mode=train model=yolov8n.pt data=data.yaml epochs=100 patience=20 batch=16 imgsz=512 device=0 augment=true
+    ```
+-   Training results, including the best model weights (`best.pt`), will be saved in a new directory under `runs/detect/` (e.g., `runs/detect/train1`).
+
+### 3. Inference
+
+Once the model is trained, you can use it for detection.
+
+-   **To run inference on a video file:**
+    ```bash
+    python src/inference.py --weights runs/detect/train1/weights/best.pt --source path/to/your/video.mp4
+    ```
+
+-   **To run live inference with the InfiRay P2 Pro camera:**
+    ```bash
+    python src/live_camera.py --weights runs/detect/train1/weights/best.pt
+    ```
+    *(Note: Command-line arguments for inference scripts may need to be adjusted.)*
+
+---
+
+## Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1.  **Fork** the repository.
+2.  Create a new branch (`git checkout -b feature/your-feature-name`).
+3.  Make your changes.
+4.  **Commit** your changes (`git commit -m 'Add some feature'`).
+5.  **Push** to the branch (`git push origin feature/your-feature-name`).
+6.  Open a **Pull Request**.
