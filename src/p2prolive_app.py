@@ -13,7 +13,7 @@ import sys
 import platform
 from thermal_detector import ThermalDetector
 
-YOLO_MODEL_PATH = "runs/detect/train4/weights/best.pt"
+YOLO_MODEL_PATH = "runs/detect/train4/weights/best.pt" #caminho do modelo
 
 st.set_page_config('P2Pro LIVE',initial_sidebar_state='expanded',page_icon='🔺',layout='wide')
 session = st.session_state
@@ -266,3 +266,4 @@ while True:    # main aquisition loop
     if tm.check('restart') : # memory leak in streamlit
         st.rerun()
             
+
