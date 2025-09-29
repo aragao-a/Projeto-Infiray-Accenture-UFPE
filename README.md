@@ -29,7 +29,8 @@ The project is organized to separate code, data, and results for clarity and eas
 ├── src/                      # All project source code
 │   ├── data_preparation/     # Scripts to process raw data
 │   ├── inference.py          # Script to run detection on a file
-│   └── live_camera.py        # Script to run live detection with the camera
+|   ├── p2prolive_app.py      # Script to run live detection with the camera
+|   └── thermal_detector.py   # Module which integrates the model with the thermal anomaly verification algorithm
 │
 ├── dataset/                  # Raw image data (not in git)
 │
