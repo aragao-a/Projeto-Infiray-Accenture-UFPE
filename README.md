@@ -107,6 +107,62 @@ Once the model is trained, you can use it for detection.
 
 ---
 
+## Training Analysis
+
+This section provides an overview of the different training runs performed for this project.
+
+### Train 1 (`runs/detect/train`)
+
+This training was performed using the following parameters:
+
+*   **Model:** `yolov8s.pt`
+*   **Dataset:** `dataset-yolo-classified/data.yaml`
+*   **Epochs:** 100 (stopped at 23 due to patience)
+*   **Patience:** 20
+*   **Image Size:** 512
+*   **Batch Size:** 16
+
+The training stopped early at epoch 23. The best results were:
+*   **mAP50(B):** 0.73368
+*   **mAP50-95(B):** 0.3951
+
+### Train 2 (`runs/detect/train2`)
+
+This training was performed with a different dataset configuration.
+
+*   **Model:** `yolov8s.pt`
+*   **Dataset:** `data.yaml`
+*   **Epochs:** 100 (stopped at 4 due to patience)
+*   **Patience:** 20
+*   **Image Size:** 512
+*   **Batch Size:** 16
+
+The training stopped very early at epoch 4. The best results were:
+*   **mAP50(B):** 0.73368
+*   **mAP50-95(B):** 0.3951
+
+### Train 4 (`runs/detect/train4`)
+
+This training used the `yolov8n.pt` model and ran for the full 50 epochs.
+
+*   **Model:** `yolov8n.pt`
+*   **Dataset:** `dataset-yolo-classified/data.yaml`
+*   **Epochs:** 50
+*   **Patience:** 100
+*   **Image Size:** 512
+*   **Batch Size:** 16
+
+The training completed all 50 epochs. The best results were:
+*   **mAP50(B):** 0.91487
+*   **mAP50-95(B):** 0.5039
+
+#### Results for Train 4
+
+![Results](runs/detect/train4/results.png)
+![Confusion Matrix](runs/detect/train4/confusion_matrix_normalized.png)
+
+---
+
 ## Contributing
 
 Contributions are welcome! Please follow these steps:
