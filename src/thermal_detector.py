@@ -7,7 +7,7 @@ import torch
 class ThermalDetector:
     def __init__(self, model_path, thermal_config=None):
         """
-        Inicializa o detector térmico com algoritmo original do Infiray
+        Inicializa o detector térmico
         
         Args:
             model_path: caminho para o modelo YOLOv8 treinado
@@ -28,7 +28,6 @@ class ThermalDetector:
         
     def anomaly_score(self, norm_u8: np.ndarray, xyxy):
         """
-        ALGORITMO ORIGINAL DO INFIRAY - DETECÇÃO DE ANOMALIA TÉRMICA
         norm_u8: imagem em uint8 (0..255), xyxy: [x1,y1,x2,y2] em pixels
         """
         x1, y1, x2, y2 = map(int, xyxy)
@@ -61,7 +60,7 @@ class ThermalDetector:
         return score, {"p95": p95, "mean_roi": mean_roi, "mean_bg": mean_bg}
 
     def to_rgb(self, im: np.ndarray) -> np.ndarray:
-        """Ensure HxWx3 uint8 for YOLO - função original do Infiray"""
+        """Ensure HxWx3 uint8 for YOLO"""
         if im is None:
             return None
         if im.ndim == 2:
@@ -72,7 +71,7 @@ class ThermalDetector:
 
     def detect_objects(self, rgb_image, thermal_data=None):
         """
-        Detecta objetos e aplica algoritmo de anomalia térmica original
+        Detecta objetos e aplica algoritmo de anomalia térmica
         
         Args:
             rgb_image: imagem RGB para detecção
@@ -147,4 +146,5 @@ class ThermalDetector:
             'detections': detections,
             'thermal_anomalies': thermal_anomalies,
             'original_results': results
+
         }
