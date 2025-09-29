@@ -102,7 +102,7 @@ Once the model is trained, you can use it for detection.
 
 -   **To run live inference with the InfiRay P2 Pro camera:**
     ```bash
-    python src/live_camera.py --weights runs/detect/train1/weights/best.pt
+    streamlit run p2prolive_app.py
     ```
     *(Note: Command-line arguments for inference scripts may need to be adjusted.)*
 
