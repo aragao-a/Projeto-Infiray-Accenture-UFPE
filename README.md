@@ -84,9 +84,9 @@ Before training, raw images must be processed into the YOLO format.
 
 To train the model, use the `yolo` command-line interface. The following command trains a `yolov8n` model for 100 epochs with data augmentation and early stopping.
 
--   **Recommended command (requires GPU):**
+-   **Recommended command:**
     ```bash
-    yolo task=detect mode=train model=yolov8n.pt data=data.yaml epochs=100 patience=20 batch=16 imgsz=512 device=0 augment=true
+    yolo task=detect mode=train model=yolov8n.pt data=data.yaml epochs=100 patience=20 batch=16 imgsz=512 augment=false
     ```
 -   Training results, including the best model weights (`best.pt`), will be saved in a new directory under `runs/detect/` (e.g., `runs/detect/train1`).
 
