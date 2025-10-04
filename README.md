@@ -45,6 +45,19 @@ Projeto da Câmera Térmica do Innovation Center com objetivo inicial de captaç
 ### Detector de Invasão
 - Pela capacidade de visão no escuro, boa pra varrer salas sem forte incidência de luz
 
+# Conclusões gerais:
+
+## Modelos:
+
+- Treinamos Yolo V8 SON, Yolo SPP piorou, mas retornamos ao motivo que o Dataset é limitado e o ambiente pra obter ele também, difícil criar situações reais.
+- Apesar de tudo, fizemos uma pipeline de bons resultados que compreende: Script de inferência que recebe as imagens reconhecidas como bolsas (a partir de um Modelo), e analisa se é quente a partir do gradiente de cor.
+
+## Integração Feed Câmera - API Dados Brutos:
+
+- Jetson funcionou com a câmera, mas o Link com o cachorro não foi possível de forma alguma, devido a interação Bluetooth (Jetson não tem) e rede IOT.
+- Link câmera-cachorro também não foi possível pois a Raspberry do cachorro não reconhece a câmera.
+- Porém como a Rasp dele está conectada à IOT da Acc, seria interessante a conexão pra pegar essas infos.
+
 # Treinamentos e Produções: Infiray P2 Pro - AI Thermal Camera Project
 
 **Project from the Accenture-UFPE Innovation Center Rotation**
